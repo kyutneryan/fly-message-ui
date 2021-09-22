@@ -1,8 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Layout, Affix, Row, Col, Input } from "antd";
+import { Layout, Affix, Row, Col, Input, Carousel } from "antd";
 import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
+import CoverPicture from "../CoverPicture";
+import ProfilePicture from "../ProfilePicture";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
@@ -38,7 +40,21 @@ const ProfilePage = () => {
                   margin: 24,
                 }}
               >
-                Profilepage
+                <Carousel>
+                  <div>
+                    <CoverPicture />
+                    <div
+                      style={{
+                        display: "inline-block",
+                        position: "relative",
+                        bottom: "64px",
+                        left: "16px",
+                      }}
+                    >
+                      <ProfilePicture />
+                    </div>
+                  </div>
+                </Carousel>
               </div>
             </Col>
             <Col span={7}>

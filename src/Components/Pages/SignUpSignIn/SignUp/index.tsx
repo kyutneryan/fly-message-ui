@@ -42,7 +42,7 @@ const SignUp = () => {
           <Header style={{backgroundColor:'white'}}>
           <Head
             HeaderText='Already a member?'
-            Link={<Link to='/'>Sign in</Link>}
+            Link={<Link to='/signin'>Sign in</Link>}
           />
           </Header>
           <Content style={{backgroundColor:"white"}}>

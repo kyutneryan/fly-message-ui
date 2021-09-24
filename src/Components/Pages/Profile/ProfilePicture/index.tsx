@@ -8,7 +8,6 @@ const { Title } = Typography;
 const ProfilePicture = () => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const previewImage = useRef("");
-  // const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
 
   const getBase64 = (file: Blob) => {
@@ -46,7 +45,7 @@ const ProfilePicture = () => {
           onPreview={handlePreview}
           onChange={({ fileList }: any) => {
             setFileList(fileList);
-            console.log(fileList)
+            console.log(fileList);
           }}
         >
           {fileList.length === 1 ? null : (

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   Layout,
   Row,
@@ -11,41 +11,35 @@ import {
   Button,
 } from "antd";
 import Kingdom1 from "../../../../assets/Kingdom1.png";
-import LeftSide from '../LeftSide';
+import LeftSide from "../LeftSide";
 import { StyleTitle } from "../SignIn/styles";
-import Head from '../Head';
+import Head from "../Head";
 
 const { Title, Text } = Typography;
 const { Header, Sider, Content } = Layout;
 
 const SignUp = () => {
-
   const onFinish = (values: any) => {
-    console.log(values)
-   };
- 
-   // useEffect(() => {
-   //   if (called && !loading && !error) {
-   //     history.push("/users");
-   //   }
-   // }, [loading, called, error, history]);
-   const onFinishFailed = (errorInfo: any) => {
-     console.log("Failed:", errorInfo);
-   };
+    console.log(values);
+  };
 
-    return (
-        <Layout style={{ height: "100vh" }}>
-        <Sider style={{backgroundColor:'#000C17'}} width={444}>
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  return (
+    <Layout style={{ height: "100vh" }}>
+      <Sider width={444}>
         <LeftSide SiderImg={Kingdom1} />
       </Sider>
-        <Layout>
-          <Header style={{backgroundColor:'white'}}>
+      <Layout>
+        <Header>
           <Head
             HeaderText='Already a member?'
             Link={<Link to='/signin'>Sign in</Link>}
           />
-          </Header>
-          <Content style={{backgroundColor:"white"}}>
+        </Header>
+        <Content style={{ backgroundColor: "white" }}>
           <Row justify='center' align='middle' style={{ height: "85%" }}>
             <Col xxl={8} xl={10}>
               <Form
@@ -162,10 +156,10 @@ const SignUp = () => {
               </Form>
             </Col>
           </Row>
-          </Content> 
-        </Layout>
+        </Content>
       </Layout>
-    );
-}
+    </Layout>
+  );
+};
 
 export default SignUp;

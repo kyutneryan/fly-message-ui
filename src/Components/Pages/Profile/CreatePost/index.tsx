@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Input, Comment, Avatar, Form, Button, List } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import moment from "moment";
+import { StylePost, StylePostContent, StylePosts } from "./styles";
 
 const { TextArea } = Input;
 
@@ -16,6 +17,7 @@ const CommentList = ({ comments }: any) => (
           backgroundColor: "white",
           marginTop: "20px",
           padding: "0 24px",
+          borderRadius:'4px'
         }}
         {...props}
       />
@@ -67,23 +69,12 @@ function CreatePost() {
           author: "Hayk Kyutneryan",
           avatar:
             "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-          content: (
-            <p
-              style={{
-                fontSize: "14px",
-                textAlign: "left",
-                verticalAlign: "top",
-                color: "#8c8c8c",
-              }}
-            >
-              {value.trim()}
-            </p>
-          ),
+          content: <StylePostContent>{value.trim()}</StylePostContent>,
           datetime: moment().fromNow(),
         },
         ...comments,
       ]);
-    }, 750);
+    }, 500);
   };
 
   const handleChange = (e: any) => {
@@ -92,9 +83,7 @@ function CreatePost() {
 
   return (
     <Row>
-      <div
-        style={{ backgroundColor: "white", padding: "0 24px", width: "100%" }}
-      >
+      <StylePost>
         <Comment
           avatar={
             <Avatar shape='square' size='large' icon={<UserOutlined />} />
@@ -108,10 +97,10 @@ function CreatePost() {
             />
           }
         />
-      </div>
-      <div style={{ width: "100%" }}>
+      </StylePost>
+      <StylePosts>
         {comments.length > 0 && <CommentList comments={comments} />}
-      </div>
+      </StylePosts>
     </Row>
   );
 }

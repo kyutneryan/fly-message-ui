@@ -16,6 +16,12 @@ import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
 import CoverPicture from "../CoverPicture";
 import ProfilePicture from "../ProfilePicture";
+import {
+  StyleProfilePage,
+  StyleProfilePage1,
+  StyleProfilePage2,
+  StyleProfilePage3,
+} from "./styles";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
@@ -60,29 +66,13 @@ const ProfilePage = () => {
         <Content>
           <Row>
             <Col span={17}>
-              <div
-                style={{
-                  margin: 24,
-                }}
-              >
+              <StyleProfilePage>
                 <CoverPicture />
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "inline-block",
-                      position: "relative",
-                      bottom: "64px",
-                      left: "16px",
-                    }}
-                  >
+                <StyleProfilePage1>
+                  <StyleProfilePage2>
                     <ProfilePicture />
-                  </div>
-                  <div style={{ marginTop: "16px" }}>
+                  </StyleProfilePage2>
+                  <StyleProfilePage3>
                     <Button type='primary' onClick={showModal}>
                       <EditOutlined /> Edit profile
                     </Button>
@@ -122,9 +112,9 @@ const ProfilePage = () => {
                         </Row>
                       </Form>
                     </Modal>
-                  </div>
-                </div>
-              </div>
+                  </StyleProfilePage3>
+                </StyleProfilePage1>
+              </StyleProfilePage>
             </Col>
             <Col span={7}>
               <div>

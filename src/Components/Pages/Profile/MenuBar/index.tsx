@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, Button, Image } from "antd";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import FlyLogo from "../../../../assets/FlyLogo.png";
+import { StyleMenuBar, StyleMenuBarLogo, StyleFlyMyStory } from "./styles";
 
 type Props = {
   defaultMenuKey: string;
@@ -10,18 +11,11 @@ type Props = {
 
 const MenuBar = (props: Props) => {
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
+    <StyleMenuBar>
       <div>
-        <div style={{ margin: "23px 0 24px 16px" }}>
+        <StyleMenuBarLogo>
           <Image preview={false} src={FlyLogo}></Image>
-        </div>
+        </StyleMenuBarLogo>
         <Menu
           theme='dark'
           mode='inline'
@@ -35,12 +29,12 @@ const MenuBar = (props: Props) => {
           </Menu.Item>
         </Menu>
       </div>
-      <div style={{ padding: "48px 16px" }}>
+      <StyleFlyMyStory>
         <Button size='large' type='primary' block>
           Fly my story!
         </Button>
-      </div>
-    </div>
+      </StyleFlyMyStory>
+    </StyleMenuBar>
   );
 };
 

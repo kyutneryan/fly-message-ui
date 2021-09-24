@@ -3,6 +3,7 @@ import { Layout, Affix, Row, Col, Input } from "antd";
 import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
 import CreatePost from "../CreatePost";
+import { StyleCreatePost, StyleSearchBar, StyleWhoToFollow } from "./styles";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
@@ -26,32 +27,17 @@ const Home = () => {
         <Content>
           <Row>
             <Col span={17}>
-              <div
-                style={{
-                  margin: 24,
-                }}
-              >
+              <StyleCreatePost>
                 <CreatePost />
-              </div>
+              </StyleCreatePost>
             </Col>
             <Col span={7}>
               <div>
                 <Affix offsetTop={95}>
-                  <div
-                    style={{
-                      margin: "0 24px 24px 0",
-                    }}
-                  >
+                  <StyleSearchBar>
                     <Search size='large' />
-                    <div
-                      style={{
-                        margin: "28px 0 0",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      Who To Follow
-                    </div>
-                  </div>
+                    <StyleWhoToFollow>Who To Follow</StyleWhoToFollow>
+                  </StyleSearchBar>
                 </Affix>
               </div>
             </Col>

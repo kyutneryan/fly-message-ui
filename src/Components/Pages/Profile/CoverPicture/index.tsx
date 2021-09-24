@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
+import { StyleCovPic } from "./styles";
 
 function getBase64(file: Blob) {
   return new Promise((resolve, reject) => {
@@ -27,20 +28,7 @@ const CoverPicture = () => {
   };
 
   return (
-    <div
-      style={{
-        height: "300px",
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "flex-end",
-        padding: 24,
-        backgroundColor: "#fff",
-        backgroundImage: `url(${previewImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }}
-    >
+    <StyleCovPic previewImage={previewImage}>
       <ImgCrop rotate aspect={2.5}>
         <Upload
           maxCount={1}
@@ -63,7 +51,7 @@ const CoverPicture = () => {
           ></Button>
         </Upload>
       </ImgCrop>
-    </div>
+    </StyleCovPic>
   );
 };
 

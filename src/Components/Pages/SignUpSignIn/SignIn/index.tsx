@@ -1,44 +1,36 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import { Layout, Form, Typography, Input, Button, Row, Col } from "antd";
 import Kingdom11 from "../../../../assets/Kingdom11.png";
-import LeftSide from '../LeftSide';
-import Head from '../Head';
+import LeftSide from "../LeftSide";
+import Head from "../Head";
 import { StyleTitle } from "./styles";
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
 
 const SignIn = () => {
-
   const onFinish = (values: any) => {
-   console.log(values)
+    console.log(values);
   };
 
-  // useEffect(() => {
-  //   if (called && !loading && !error) {
-  //     history.push("/users");
-  //   }
-  // }, [loading, called, error, history]);
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
-
-
-    return (
-        <Layout style={{ height: "100vh" }}>
-        <Sider style={{backgroundColor:'#000C17'}} width={444}>
+  return (
+    <Layout style={{ height: "100vh" }}>
+      <Sider width={444}>
         <LeftSide SiderImg={Kingdom11} />
       </Sider>
-        <Layout>
-          <Header style={{backgroundColor:'white'}} >
+      <Layout>
+        <Header>
           <Head
             HeaderText='Not a member?'
             Link={<Link to='/signup'>Sign up</Link>}
           />
-          </Header>
-          <Content style={{backgroundColor:'white'}}>
+        </Header>
+        <Content style={{ backgroundColor: "white" }}>
           <Row style={{ height: "85%" }} justify='center' align='middle'>
             <Col xxl={8} xl={10}>
               <Form
@@ -93,11 +85,10 @@ const SignIn = () => {
               </Form>
             </Col>
           </Row>
-          </Content> 
-        </Layout>
+        </Content>
       </Layout>
-    );
-}
+    </Layout>
+  );
+};
 
 export default SignIn;
-

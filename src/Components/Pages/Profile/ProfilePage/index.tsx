@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Layout, Affix, Row, Col, Input, Carousel } from "antd";
+import {
+  Layout,
+  Affix,
+  Row,
+  Col,
+  Input,
+  Modal,
+  Button,
+  Form,
+  DatePicker,
+} from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
 import CoverPicture from "../CoverPicture";
@@ -11,6 +22,21 @@ const { Search } = Input;
 
 const ProfilePage = () => {
   const history = useHistory();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onFinish = (values: any) => {
+    values.dateofbirth = values.dateofbirth.format("YYYY-MM-DD");
+    console.log(values);
+    setIsModalVisible(false);
+  };
 
   return (
     <Layout>
@@ -31,7 +57,6 @@ const ProfilePage = () => {
             />
           </div>
         </Affix>
-
         <Content>
           <Row>
             <Col span={17}>
@@ -40,22 +65,66 @@ const ProfilePage = () => {
                   margin: 24,
                 }}
               >
-                <Carousel>
-                  <div>
                     <CoverPicture />
                     <div
                       style={{
-                        display: "inline-block",
-                        position: "relative",
-                        bottom: "64px",
-                        left: "16px",
+                        display: "flex",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <ProfilePicture />
+                      <div
+                        style={{
+                          display: "inline-block",
+                          position: "relative",
+                          bottom: "64px",
+                          left: "16px",
+                        }}
+                      >
+                        <ProfilePicture />
+                      </div>
+                      <div style={{ marginTop: "16px" }}>
+                        <Button type='primary' onClick={showModal}>
+                          <EditOutlined /> Edit profile
+                        </Button>
+                        <Modal
+                          bodyStyle={{ backgroundColor: "#F5F5F5" }}
+                          footer={null}
+                          title='Edit profile'
+                          visible={isModalVisible}
+                          onCancel={handleCancel}
+                        >
+                          <Form name='edit-profile' onFinish={onFinish}>
+                            <Form.Item name='name'>
+                              <Input placeholder='Name' />
+                            </Form.Item>
+                            <Form.Item name='surname'>
+                              <Input placeholder='Surname' />
+                            </Form.Item>
+                            <Form.Item name='bio'>
+                              <Input.TextArea placeholder='Bio' />
+                            </Form.Item>
+                            <Form.Item name='website'>
+                              <Input placeholder='website' />
+                            </Form.Item>
+                            <Row justify='space-between'>
+                              <Col>
+                                <Form.Item name='dateofbirth'>
+                                  <DatePicker placeholder='Date of birth' />
+                                </Form.Item>
+                              </Col>
+                              <Col>
+                                <Form.Item>
+                                  <Button type='primary' htmlType='submit'>
+                                    Submit
+                                  </Button>
+                                </Form.Item>
+                              </Col>
+                            </Row>
+                          </Form>
+                        </Modal>
+                      </div>
                     </div>
                   </div>
-                </Carousel>
-              </div>
             </Col>
             <Col span={7}>
               <div>

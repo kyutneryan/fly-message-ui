@@ -25,6 +25,7 @@ const CoverPicture = () => {
     setPreviewImage(fileList[0].preview);
     setFileList(fileList);
   };
+
   return (
     <div
       style={{

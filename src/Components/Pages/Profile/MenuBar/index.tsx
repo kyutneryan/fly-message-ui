@@ -35,7 +35,6 @@ const MenuBar = (props: Props) => {
           </Menu.Item>
         </Menu>
       </div>
-
       <div style={{ padding: "48px 16px" }}>
         <Button size='large' type='primary' block>
           Fly my story!

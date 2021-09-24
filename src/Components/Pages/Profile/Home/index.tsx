@@ -2,9 +2,11 @@ import React from "react";
 import { Layout, Affix, Row, Col, Input } from "antd";
 import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
+import CreatePost from "../CreatePost";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
+
 const Home = () => {
   return (
     <Layout>
@@ -29,7 +31,7 @@ const Home = () => {
                   margin: 24,
                 }}
               >
-                <h1>Home Page</h1>
+                <CreatePost />
               </div>
             </Col>
             <Col span={7}>

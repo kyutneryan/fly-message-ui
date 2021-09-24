@@ -65,66 +65,66 @@ const ProfilePage = () => {
                   margin: 24,
                 }}
               >
-                    <CoverPicture />
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "inline-block",
-                          position: "relative",
-                          bottom: "64px",
-                          left: "16px",
-                        }}
-                      >
-                        <ProfilePicture />
-                      </div>
-                      <div style={{ marginTop: "16px" }}>
-                        <Button type='primary' onClick={showModal}>
-                          <EditOutlined /> Edit profile
-                        </Button>
-                        <Modal
-                          bodyStyle={{ backgroundColor: "#F5F5F5" }}
-                          footer={null}
-                          title='Edit profile'
-                          visible={isModalVisible}
-                          onCancel={handleCancel}
-                        >
-                          <Form name='edit-profile' onFinish={onFinish}>
-                            <Form.Item name='name'>
-                              <Input placeholder='Name' />
-                            </Form.Item>
-                            <Form.Item name='surname'>
-                              <Input placeholder='Surname' />
-                            </Form.Item>
-                            <Form.Item name='bio'>
-                              <Input.TextArea placeholder='Bio' />
-                            </Form.Item>
-                            <Form.Item name='website'>
-                              <Input placeholder='website' />
-                            </Form.Item>
-                            <Row justify='space-between'>
-                              <Col>
-                                <Form.Item name='dateofbirth'>
-                                  <DatePicker placeholder='Date of birth' />
-                                </Form.Item>
-                              </Col>
-                              <Col>
-                                <Form.Item>
-                                  <Button type='primary' htmlType='submit'>
-                                    Submit
-                                  </Button>
-                                </Form.Item>
-                              </Col>
-                            </Row>
-                          </Form>
-                        </Modal>
-                      </div>
-                    </div>
+                <CoverPicture />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "inline-block",
+                      position: "relative",
+                      bottom: "64px",
+                      left: "16px",
+                    }}
+                  >
+                    <ProfilePicture />
                   </div>
+                  <div style={{ marginTop: "16px" }}>
+                    <Button type='primary' onClick={showModal}>
+                      <EditOutlined /> Edit profile
+                    </Button>
+                    <Modal
+                      bodyStyle={{ backgroundColor: "#F5F5F5" }}
+                      footer={null}
+                      title='Edit profile'
+                      visible={isModalVisible}
+                      onCancel={handleCancel}
+                    >
+                      <Form name='edit-profile' onFinish={onFinish}>
+                        <Form.Item name='name'>
+                          <Input placeholder='Name' />
+                        </Form.Item>
+                        <Form.Item name='surname'>
+                          <Input placeholder='Surname' />
+                        </Form.Item>
+                        <Form.Item name='bio'>
+                          <Input.TextArea placeholder='Bio' />
+                        </Form.Item>
+                        <Form.Item name='website'>
+                          <Input placeholder='website' />
+                        </Form.Item>
+                        <Row justify='space-between'>
+                          <Col>
+                            <Form.Item name='dateofbirth'>
+                              <DatePicker placeholder='Date of birth' />
+                            </Form.Item>
+                          </Col>
+                          <Col>
+                            <Form.Item>
+                              <Button type='primary' htmlType='submit'>
+                                Submit
+                              </Button>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Form>
+                    </Modal>
+                  </div>
+                </div>
+              </div>
             </Col>
             <Col span={7}>
               <div>

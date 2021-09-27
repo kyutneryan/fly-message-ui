@@ -1,17 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Layout, Form, Typography, Input, Button, Row, Col } from "antd";
 import Kingdom11 from "../../../../assets/Kingdom11.png";
 import LeftSide from "../LeftSide";
 import Head from "../Head";
 import { StyleTitle } from "./styles";
+import { useMutation, gql } from "@apollo/client";
 
 const { Header, Sider, Content } = Layout;
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
+
+const SIGNIN_USER = gql`
+  mutation ($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
+`;
 
 const SignIn = () => {
-  const onFinish = (values: any) => {
-    console.log(values);
+ const [loginError, setLoginError] = useState("")
+  const [login] = useMutation(SIGNIN_USER)
+  const history = useHistory();
+
+  const onFinish = async (values: any) => {
+    try{
+      const {
+      data: {
+        login: { token },
+      },
+    } = await login({
+      variables: values,
+    });
+
+    if (token) {
+      localStorage.setItem("token", token);
+      history.push("/home");
+    }
+    }
+    catch(e:any){
+      setLoginError('The email address or password is incorrect. Please retry...')
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -43,6 +72,7 @@ const SignIn = () => {
               >
                 <StyleTitle>
                   <Title level={2}>Sign in to Fly</Title>
+                  <Paragraph type="danger" >{loginError}</Paragraph>
                 </StyleTitle>
 
                 <Form.Item label='Email'>

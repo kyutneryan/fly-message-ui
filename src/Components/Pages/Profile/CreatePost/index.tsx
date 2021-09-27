@@ -17,7 +17,7 @@ const CommentList = ({ comments }: any) => (
           backgroundColor: "white",
           marginTop: "20px",
           padding: "0 24px",
-          borderRadius:'4px'
+          borderRadius: "4px",
         }}
         {...props}
       />

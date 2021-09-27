@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Layout,
   Row,
@@ -14,13 +14,40 @@ import Kingdom1 from "../../../../assets/Kingdom1.png";
 import LeftSide from "../LeftSide";
 import { StyleTitle } from "../SignIn/styles";
 import Head from "../Head";
+import { useMutation, gql } from "@apollo/client";
 
 const { Title, Text } = Typography;
 const { Header, Sider, Content } = Layout;
 
+const ADD_USER = gql`
+  mutation FormSignUp(
+    $name: String
+    $surname: String
+    $email: String!
+    $password: String!
+  ) {
+    signup(name: $name, surname: $surname, email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
 const SignUp = () => {
-  const onFinish = (values: any) => {
-    console.log(values);
+  const history = useHistory();
+  const [signup] = useMutation(ADD_USER);
+
+  const onFinish = async (values: any) => {
+    const {
+      data: {
+        signup: { token },
+      },
+    } = await signup({
+      variables: values,
+    });
+    if (token) {
+      localStorage.setItem("token", token);
+      history.push("/");
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

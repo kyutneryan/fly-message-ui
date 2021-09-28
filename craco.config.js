@@ -15,6 +15,8 @@ module.exports = {
               "@form-item-margin-bottom": "12px",
               "@layout-sider-background": "#000C17",
               "@menu-dark-bg": "@layout-sider-background",
+              "@layout-footer-background": "#fff",
+              "@layout-footer-padding": "24px 0"
             },
             javascriptEnabled: true,
           },

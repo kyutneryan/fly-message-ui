@@ -4,6 +4,7 @@ import MenuBar from "../MenuBar";
 import PageHead from "../PageHead";
 import CreatePost from "../CreatePost";
 import { StyleCreatePost, StyleSearchBar, StyleWhoToFollow } from "./styles";
+import WhoToFollow from "../WhoToFollow";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
@@ -36,7 +37,7 @@ const Home = () => {
                 <Affix offsetTop={95}>
                   <StyleSearchBar>
                     <Search size='large' />
-                    <StyleWhoToFollow>Who To Follow</StyleWhoToFollow>
+                    <StyleWhoToFollow><WhoToFollow /></StyleWhoToFollow>
                   </StyleSearchBar>
                 </Affix>
               </div>

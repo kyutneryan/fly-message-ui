@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   Layout,
@@ -16,7 +16,7 @@ import { StyleTitle } from "../SignIn/styles";
 import Head from "../Head";
 import { useMutation, gql } from "@apollo/client";
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 const { Header, Sider, Content } = Layout;
 
 const ADD_USER = gql`
@@ -33,11 +33,13 @@ const ADD_USER = gql`
 `;
 
 const SignUp = () => {
+  const [signUpError, setSignUpError] = useState("")
   const history = useHistory();
   const [signup] = useMutation(ADD_USER);
 
   const onFinish = async (values: any) => {
-    const {
+    try{
+      const {
       data: {
         signup: { token },
       },
@@ -48,6 +50,11 @@ const SignUp = () => {
       localStorage.setItem("token", token);
       history.push("/");
     }
+    }
+    catch{
+setSignUpError("This email address is already in use")
+    }
+    
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -79,6 +86,7 @@ const SignUp = () => {
               >
                 <StyleTitle>
                   <Title level={2}>Sign up to Fly</Title>
+                  <Paragraph type='danger'>{signUpError}</Paragraph>
                 </StyleTitle>
 
                 <Row gutter={[16, 0]}>

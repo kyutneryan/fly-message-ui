@@ -2,13 +2,28 @@ import React, { useState, useRef } from "react";
 import { Upload, Modal, Typography } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
+import { useQuery, gql } from "@apollo/client";
 
 const { Title } = Typography;
 
-const ProfilePicture = () => {
+const GET_USER = gql`
+  {
+    me {
+      name
+      surname
+    }
+  }
+`;
+
+const ProfilePicture = (): any => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const previewImage = useRef("");
   const [fileList, setFileList] = useState([]);
+
+  const { loading, error, data } = useQuery(GET_USER);
+
+  if (loading) return "";
+  if (error) return `Error! ${error.message}`;
 
   const getBase64 = (file: Blob) => {
     return new Promise((resolve, reject) => {
@@ -56,7 +71,7 @@ const ProfilePicture = () => {
           )}
         </Upload>
       </ImgCrop>
-      <Title level={3}>{"Hayk Kyutneryan"}</Title>
+      <Title level={3}>{data.me.name + " " + data.me.surname}</Title>
       <Modal
         visible={previewVisible}
         title='Profile Picture'

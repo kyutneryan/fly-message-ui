@@ -22,13 +22,29 @@ import {
   StyleProfilePage2,
   StyleProfilePage3,
 } from "./styles";
+import { useQuery, gql } from "@apollo/client";
+import WhoToFollow from "../WhoToFollow";
 
 const { Sider, Content } = Layout;
 const { Search } = Input;
 
-const ProfilePage = () => {
+const GET_USER = gql`
+  {
+    me {
+      name
+      surname
+    }
+  }
+`;
+
+const ProfilePage = (): any => {
   const history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const { loading, error, data } = useQuery(GET_USER);
+
+  if (loading) return "";
+  if (error) return `Error! ${error.message}`;
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -57,7 +73,7 @@ const ProfilePage = () => {
         <Affix offsetTop={0}>
           <div>
             <PageHead
-              title={"Hayk Kyutneryan"}
+              title={data.me.name + " " + data.me.surname}
               subTitle='My profile'
               onBack={() => history.push("/home")}
             />
@@ -131,7 +147,7 @@ const ProfilePage = () => {
                         backgroundColor: "white",
                       }}
                     >
-                      Who To Follow
+                      <WhoToFollow />
                     </div>
                   </div>
                 </Affix>

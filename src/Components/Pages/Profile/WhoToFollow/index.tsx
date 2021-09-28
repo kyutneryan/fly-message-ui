@@ -6,13 +6,13 @@ const { Text } = Typography;
 const { Footer } = Layout;
 
 const ALL_USERS = gql`
-query Query($skip: Int!, $take: Int!) {
-  allUsers(skip: $skip, take: $take) {
-  name
-  surname
-  email  
+  query Query($skip: Int!, $take: Int!) {
+    allUsers(skip: $skip, take: $take) {
+      name
+      surname
+      email
+    }
   }
-}
 `;
 
 const WhoToFollow = (): any => {
@@ -21,21 +21,19 @@ const WhoToFollow = (): any => {
   const [list, setList]: any = useState([]);
   const [skip, setSkip] = useState(0);
 
-  const { loading, error, data }:any = useQuery(ALL_USERS, {
-    variables: { skip: skip, take: 4}
-
+  const { loading, error, data }: any = useQuery(ALL_USERS, {
+    variables: { skip: skip, take: 4 },
   });
 
   useEffect((): any => {
     if (loading) return null;
     if (error) return `Error! ${error}`;
     setInitLoading(false);
-    if (!loading && data){
+    if (!loading && data) {
       setList([...list, ...data.allUsers]);
       setLoad(false);
     }
   }, [loading, error, data]);
-  
 
   const onLoadMore = () => {
     setSkip(skip + 4);
